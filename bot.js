@@ -6,17 +6,21 @@ client.on('ready', () => {
   console.log("Online");
 });
 
-var prefix = "!VOTE "
+var prefix = /^!VOTE /
 client.on('message', message => {
-  if(message.content.startsWith(prefix) $$ message.author != client.user){
-    if(message.content === prefix+"ping"){
-      message.channel.send("pong");
-    }
-    else if(message.content === prefix+"help"){
-      message.channel.send("ping:\n\treturns pong")
-    }
-    else{
-      message.channel.send("Unknown Command. Say !VOTE help for help")
+  if(message.content.match(prefix) && message.author != client.user){
+    var content = message.content.replace(prefix,"");
+    console.log(content);
+    switch (content) {
+      case "ping":
+        message.channel.send("pong");
+        break;
+      case "help":
+        message.channel.send("ping:\n\treturns pong")
+        break;
+      default:
+        message.channel.send("Unknown Command. Say !VOTE help for help")
+
     }
   }
 });
