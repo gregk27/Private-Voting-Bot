@@ -13,17 +13,24 @@ client.on('message', message => {
     console.log(content);
     switch (content) {
       case "ping":
-        message.channel.send("pong");
+        send("pong", message);
         break;
       case "help":
-        message.channel.send("ping:\n\treturns pong")
+        help(message);
         break;
       default:
-        message.channel.send("Unknown Command. Say !VOTE help for help")
+        send("Unknown Command. Say !VOTE help for help", message)
 
     }
   }
 });
 
+function send(message, msgData){
+  msgData.channel.send(message);
+}
+
+function help(msgData){
+  send("ping:\n\treturns pong", msgData)
+}
 
 client.login(settings.token);
