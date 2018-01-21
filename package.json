@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/Aree-Vanier/Better-Voting-Bot/issues"
   },
-  "homepage": "https://github.com/Aree-Vanier/Better-Voting-Bot#readme"
+  "homepage": "https://github.com/Aree-Vanier/Better-Voting-Bot#readme",
+  "dependencies": {
+    "discord.js": "^11.3.0"
+  }
 }
