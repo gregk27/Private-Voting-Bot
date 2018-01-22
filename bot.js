@@ -7,7 +7,7 @@ client.on('ready', () => {
   console.log("Online");
 });
 
-var prefix = /^!VOTE /
+var prefix = /^!vote /
 client.on('message', message => {
   if(message.content.match(prefix) && message.author != client.user){
     var content = message.content.replace(prefix,"");
@@ -53,14 +53,12 @@ function start(msgData, args){
   var privacy = false;
   if(args.includes("STV")){
     mode = "STV"
-    var target= args[args.indexOf("STV")+4]+args[args.indexOf("STV")+5];
+    var target= args[args.indexOf("--STV")+4]+args[args.indexOf("STV")+5];
     target = target.replace(" ", "");
   }
   if(args.includes("-p")||args.includes("--private")){
     privacy = true;
   }
-
-
 
   console.log("NEW POLL");
   console.log("\t" + ID);
@@ -68,7 +66,19 @@ function start(msgData, args){
   console.log("\t" + mode);
   console.log("\t" + target);
   console.log("\t" + privacy);
-  send(msgData.author+" Started a vote", msgData);
+
+  var letters = "abcdefghijklmnopqrstuvwxyz".split("");
+
+  var out = "**"+msgData.author.tag.split("#")[0]+" started a "+mode+" vote. Your options are:**\n```";
+  for(var i = 0; i < options.length; i++){
+    out+=letters[i]+") "+options[i]+"\n";
+  }
+  out+="```";
+  if(privacy){
+    out += "The vote will be private";
+  }
+
+  send(out, msgData);
 }
 
 function send(message, msgData){
