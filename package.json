@@ -1,14 +1,14 @@
 {
-  "name": "com.greg.bettervotebot",
+  "name": "com.greg.privatevotebot",
   "version": "0.1.0",
-  "description": "A better voting bot for discord",
+  "description": "A private voting bot for discord",
   "main": "bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Aree-Vanier/Better-Voting-Bot.git"
+    "url": "git+https://github.com/Aree-Vanier/Private-Voting-Bot.git"
   },
   "keywords": [
     "discord"
@@ -16,9 +16,9 @@
   "author": "Greg",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Aree-Vanier/Better-Voting-Bot/issues"
+    "url": "https://github.com/Aree-Vanier/Private-Voting-Bot/issues"
   },
-  "homepage": "https://github.com/Aree-Vanier/Better-Voting-Bot#readme",
+  "homepage": "https://github.com/Aree-Vanier/Private-Voting-Bot#readme",
   "dependencies": {
     "discord.js": "^11.3.0"
   }

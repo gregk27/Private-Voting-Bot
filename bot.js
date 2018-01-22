@@ -2,6 +2,8 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const settings = require('./settings.json');
 const commands = require('./commands.json');
+// const votes = require("./votes.js");
+const crypto = require("crypto");
 
 client.on('ready', () => {
   console.log("Online");
@@ -23,17 +25,26 @@ client.on('message', message => {
       }
     }
     if(!valid){
-      send("Invalid command!\nSay "+String(prefix).replace("/", "").replace("^", "").replace("/", "")+" help for help.", message);
+      send("Invalid command!\nSay "+String(prefix).replace("/^", "").replace("/", "")+" help for help.", message);
     }
   }
 });
+
+function test(msgData){
+  msgData.author.send("You Called?");
+}
 
 function call(command, message, args){
   eval(command.function);
 }
 
 function start(msgData, args){
-  var ID = msgData.author.tag.split("#")[1] + " " + args.split(" ")[0];
+  var salt = args.split(" ")[0];
+
+  var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
+  hash.update(msgData.author.tag.split("#")[1]);
+  var ID = hash.digest('hex');
+
   var options = [];
   var split = args.split("\"");
   for(var i = 1; i < split.length; i++){
@@ -78,11 +89,28 @@ function start(msgData, args){
     out += "The vote will be private";
   }
 
-  send(out, msgData);
+  var msg = send(out, msgData);
+
+  print("We have returned")
+  print(msg)
+  // console.log(msg.content);
+  // msg.react(":fried_shrimp:");
+
+  // votes.newVote(ID, msg, options, mode, traget);
+
 }
 
 function send(message, msgData){
-  msgData.channel.send(message);
+  var sentMessage = null;
+  var data = msgData.channel.send(message).then(msg => sentMessage = msg);
+  console.log("Message received");
+  return sentMessage;
+  // console.log(data);
+  // console.log(client);
+  // console.log(client.user);
+  // console.log(client.user.lastMessage);
+  // console.log(msgData.channel.lastMessage.reactions);
+  // return (sentMessage);
 }
 
 function help(msgData){
