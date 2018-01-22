@@ -16,12 +16,17 @@
     "function":"start(message, args)",
     "description":"Starts a new vote",
     "args":"ID <opt1>,<opt2>,<opt3>,... [--STV Win%]  [-p|--private] [group]"
-  }
+  },
   {
     "trigger":"private",
     "function":"test(message)",
     "description":"Test private communications",
     "args":""
-
+  },
+  {
+      "trigger":"vote",
+      "function":"submit(message)",
+      "description":"Submit your vote",
+      "args":""
   }
 ]

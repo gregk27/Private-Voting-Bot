@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 const client = new Discord.Client();
 const settings = require('./settings.json');
 const commands = require('./commands.json');
-// const votes = require("./votes.js");
+const votes = require("./votes.js");
 const crypto = require("crypto");
 
 client.on('ready', () => {
@@ -30,8 +30,21 @@ client.on('message', message => {
   }
 });
 
+var lastMessage;
+
 function test(msgData){
-  msgData.author.send("You Called?");
+  var message = msgData.author.send("You Called?");
+  lastMessage = message;
+  votes.newVote(1, msgData, [2]);
+}
+
+function submit(msgData){
+  // console.log(lastMessage.Message.reactions);
+  votes.submit(1, 2);
+  // messages = msgData.channel.messages.findAll("message");
+  // for(var i = 0; i < messages.length; i++){
+  //   console.log(messages[i].message.content)
+  // }
 }
 
 function call(command, message, args){
