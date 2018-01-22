@@ -1,0 +1,20 @@
+[
+  {
+    "trigger":"ping",
+    "function":"send('pong', message)",
+    "description":"Returns pong",
+    "args":"",
+  },
+  {
+    "trigger":"help",
+    "function":"help(message)",
+    "description":"Lists available commands and arguments",
+    "args":"",
+  },
+  {
+    "trigger":"start",
+    "function":"start(message, args)",
+    "description":"Starts a new vote",
+    "args":"options [FPTP:STV] [Win % (STV)]",
+  }
+]
