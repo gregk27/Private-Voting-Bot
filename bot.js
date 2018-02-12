@@ -34,14 +34,26 @@ var lastMessage;
 
 function test(msgData, args){
   console.log(args);
-  args.replace("@","");
+
+  opts = args.split("[")[1];
+  opts = opts.slice(0,-1);
+  opts = opts.split(",");
+
+  options = "";
+  for(var i = 0; i < opts.length; i++){
+    options += i+":\t"+opts[i]+"\n";
+  }
+
+
+  mention = args.split(" ")[0];
+  mention.replace("@","");
   var ID = msgData.author.id;
   var sent = [];
-  targets = msgData.guild.roles.find("name", args).members.array();
+  targets = msgData.guild.roles.find("name", mention).members.array();
   for(var i = 0; i < targets.length; i ++){
     user = targets[i].user;
     if(!user.bot){
-      user.send("You have beed chosen. ID:"+ID);
+      user.send("You have beed chosen. ID:"+ID+"\n"+options);
       sent.push(user.id);
       console.log(user.id);
       console.log(ID+"\t"+user.id.split("#")[1])

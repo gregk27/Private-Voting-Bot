@@ -21,7 +21,7 @@
     "trigger":"private",
     "function":"test(message, args)",
     "description":"Test private communications",
-    "args":"target"
+    "args":"target [<opt1>,<opt1>,<opt3>,...]"
   },
   {
       "trigger":"vote",
