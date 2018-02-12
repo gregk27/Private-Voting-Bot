@@ -12,3 +12,4 @@ A discord bot that allows users to vote privately
   - Users can stop polls manually
   - Ability to mention multiple users without needing a group
   - Polls that close after an amount of time
+  - Better command error messages
