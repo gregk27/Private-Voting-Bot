@@ -53,7 +53,7 @@ function test(msgData, args){
   for(var i = 0; i < targets.length; i ++){
     user = targets[i].user;
     if(!user.bot){
-      user.send("You have beed chosen. ID:"+ID+"\n"+options);
+      user.send("You have been chosen. ID:"+ID+"\n"+options);
       sent.push(user.id);
       console.log(user.id);
       console.log(ID+"\t"+user.id.split("#")[1])
@@ -66,9 +66,14 @@ function test(msgData, args){
 }
 
 function submit(msgData, args){
-  user = msgData.author;
+  var user = msgData.author;
+
+  var ID = args.split(" ")[1];
+
+  var option = args.split(" ")[0]
+
   // console.log(lastMessage.Message.reactions);
-  votes.submit(args,user.id);// msgData.user.id.split("#")[1]);
+  votes.submit(ID,user.id, option);// msgData.user.id.split("#")[1]);
   console.log(args+"\t"+user.id);
   // messages = msgData.channel.messages.findAll("message");
   // for(var i = 0; i < messages.length; i++){

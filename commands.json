@@ -21,12 +21,12 @@
     "trigger":"private",
     "function":"test(message, args)",
     "description":"Test private communications",
-    "args":"target [<opt1>,<opt1>,<opt3>,...]"
+    "args":"Target [<opt1>,<opt1>,<opt3>,...]"
   },
   {
       "trigger":"vote",
       "function":"submit(message, args)",
       "description":"Submit your vote",
-      "args":"ID"
+      "args":"Option, ID"
   }
 ]

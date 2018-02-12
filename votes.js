@@ -5,18 +5,20 @@ function Vote (ID, message, children) {
   this.message = message,
   //Message ids of children
   this.children = children
+  this.votes = [];
 }
 
 Vote.prototype = {
     constructor: Vote,
 
-    submit:function (child){
+    submit:function (child, option){
       console.log(this.children);
       for(var i = 0; i < this.children.length; i++){
         if(this.children[i] == child){
             console.log("match");
             this.children.splice(i,1);
             console.log(this.children);
+            this.votes.push(option);
             break;
         }
       }
@@ -28,7 +30,7 @@ Vote.prototype = {
     },
 
     end:function(){
-      this.message.channel.send("Vote Completed");
+      this.message.channel.send("Vote Completed. "+this.votes);
       console.log("Vote Completed");
     }
 
@@ -41,12 +43,12 @@ module.exports = {
     votes.push(new Vote(ID, message, children));
   },
 
-  submit:function(ID, childID){
+  submit:function(ID, childID, option){
       for(var i = 0; i < votes.length; i++){
         console.log(votes[i].ID + "\t" + ID);
         if(votes[i].ID == ID){
           console.log("ID good");
-          votes[i].submit(childID);
+          votes[i].submit(childID, option);
         }
       }
   }
