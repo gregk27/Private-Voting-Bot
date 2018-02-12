@@ -43,7 +43,9 @@ module.exports = {
 
   submit:function(ID, childID){
       for(var i = 0; i < votes.length; i++){
+        console.log(votes[i].ID + "\t" + ID);
         if(votes[i].ID == ID){
+          console.log("ID good");
           votes[i].submit(childID);
         }
       }

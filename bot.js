@@ -32,15 +32,32 @@ client.on('message', message => {
 
 var lastMessage;
 
-function test(msgData){
-  var message = msgData.author.send("You Called?");
-  lastMessage = message;
-  votes.newVote(1, msgData, [2]);
+function test(msgData, args){
+  console.log(args);
+  args.replace("@","");
+  var ID = 1;//msgData.user.id.split("#")[1];
+  var sent = [];
+  targets = msgData.guild.roles.find("name", args).members.array();
+  for(var i = 0; i < targets.length; i ++){
+    user = targets[i].user;
+    if(!user.bot){
+      user.send("You have beed chosen. ID:"+ID);
+      sent.push(user.id);
+      console.log(user.id);
+      console.log(ID+"\t"+user.id.split("#")[1])
+    }
+  }
+  // var message = msgData.author.send("You Called?");
+  // lastMessage = message;
+  console.log(sent.length + "\t" + sent);
+  votes.newVote(ID, msgData, sent);
 }
 
-function submit(msgData){
+function submit(msgData, args){
+  user = msgData.author;
   // console.log(lastMessage.Message.reactions);
-  votes.submit(1, 2);
+  votes.submit(args,user.id);// msgData.user.id.split("#")[1]);
+  console.log(args+"\t"+user.id);
   // messages = msgData.channel.messages.findAll("message");
   // for(var i = 0; i < messages.length; i++){
   //   console.log(messages[i].message.content)
