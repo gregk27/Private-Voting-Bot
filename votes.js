@@ -32,11 +32,21 @@ Vote.prototype = {
     end:function(){
       this.message.channel.send("Vote Completed. "+this.votes);
       console.log("Vote Completed");
+      terminate(this.ID);
     }
 
 }
 
 votes = []
+
+function terminate(ID){
+      for(var i = 0; i < votes.length; i++){
+        console.log(votes[i].ID + "\t" + ID);
+        if(votes[i].ID == ID){
+          votes.splice(i, 1);
+        }
+      }
+}
 
 module.exports = {
   newVote:function(ID, message, children){
