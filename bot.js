@@ -35,7 +35,7 @@ var lastMessage;
 function test(msgData, args){
   console.log(args);
   args.replace("@","");
-  var ID = 1;//msgData.user.id.split("#")[1];
+  var ID = msgData.author.id;
   var sent = [];
   targets = msgData.guild.roles.find("name", args).members.array();
   for(var i = 0; i < targets.length; i ++){
