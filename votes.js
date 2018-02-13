@@ -61,5 +61,30 @@ module.exports = {
           votes[i].submit(childID, option);
         }
       }
+  },
+
+  newID:function(){
+    var possible = "abcdefghijklmnopqrstuvwxyz0123456789";
+    while(true){
+      var conflict = false;
+      var ID = "";
+
+      //Generate ID
+      for (var i = 0; i < 4; i++){
+        ID += possible.charAt(Math.floor(Math.random() * possible.length));
+      }
+      //Check for conflicts
+      for(var i = 0; i < votes.length; i++){
+        if(votes[i].ID == ID){
+          conflict = true;
+        }
+      }
+      //If conflicts exist, generate a new code
+      if(!conflict){
+        break;
+      }
+    }
+
+    return ID;
   }
 }

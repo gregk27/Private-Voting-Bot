@@ -8,10 +8,10 @@ A discord bot that allows users to vote privately
     - Raw results are displayed when all users have voted
 
 # Future
-  - Each user can have multiple polls running
+  - ~~Each user can have multiple polls running~~
   - Users can stop polls manually
   - Ability to mention multiple users without needing a group
   - Polls that close after an amount of time
   - Better syntax error messages
   - Poll results are tallied
-  - Shorter poll ids
+  - ~~Shorter poll ids~~

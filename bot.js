@@ -5,6 +5,7 @@ const commands = require('./commands.json');
 const votes = require("./votes.js");
 const crypto = require("crypto");
 
+
 client.on('ready', () => {
   console.log("Online");
 });
@@ -45,9 +46,10 @@ function test(msgData, args){
   }
 
 
+
   mention = args.split(" ")[0];
   mention.replace("@","");
-  var ID = msgData.author.id;
+  var ID = votes.newID();
   var sent = [];
   targets = msgData.guild.roles.find("name", mention).members.array();
   for(var i = 0; i < targets.length; i ++){
