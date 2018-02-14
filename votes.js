@@ -1,11 +1,12 @@
 const Discord = require("discord.js");
 
-function Vote (ID, message, children) {
-  this.ID = ID,
-  this.message = message,
+function Vote (ID, message, children, options) {
+  this.ID = ID;
+  this.message = message;
   //Message ids of children
-  this.children = children
+  this.children = children;
   this.votes = [];
+  this.options = options;
 }
 
 Vote.prototype = {
@@ -30,7 +31,33 @@ Vote.prototype = {
     },
 
     end:function(){
-      this.message.channel.send("Vote Completed. "+this.votes);
+
+      var scores = [];
+
+      console.log(this.options);
+
+      for(var i = 0; i < this.options.length; i++){
+        var temp = 0;
+        console.log(this.options[i]);
+        for(var v = 0; v < this.votes.length; v++){
+          console.log(this.votes[v]);
+          if(this.votes[v]==i){
+            console.log("Counted");
+            temp ++;
+          }
+        }
+        console.log(temp);
+        scores.push(temp);
+      }
+
+      console.log(scores);
+
+      var results = "\n";
+      for(var i = 0; i < this.options.length; i++){
+        results+=this.options[i]+"("+i+"): "+scores[i]+"\n";
+      }
+
+      this.message.channel.send("Vote Completed."+results);
       console.log("Vote Completed");
       terminate(this.ID);
     }
@@ -49,8 +76,8 @@ function terminate(ID){
 }
 
 module.exports = {
-  newVote:function(ID, message, children){
-    votes.push(new Vote(ID, message, children));
+  newVote:function(ID, message, children, options){
+    votes.push(new Vote(ID, message, children, options));
   },
 
   submit:function(ID, childID, option){

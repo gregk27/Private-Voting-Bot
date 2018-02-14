@@ -55,7 +55,7 @@ function test(msgData, args){
   for(var i = 0; i < targets.length; i ++){
     user = targets[i].user;
     if(!user.bot){
-      user.send("You have been chosen. ID:"+ID+"\n"+options);
+      user.send("You have been chosen to vote in poll "+ID+".\n"+options+"\nTo reply enter `!vote vote <opt> "+ID+"`");
       sent.push(user.id);
       console.log(user.id);
       console.log(ID+"\t"+user.id.split("#")[1])
@@ -64,7 +64,7 @@ function test(msgData, args){
   // var message = msgData.author.send("You Called?");
   // lastMessage = message;
   console.log(sent.length + "\t" + sent);
-  votes.newVote(ID, msgData, sent);
+  votes.newVote(ID, msgData, sent, opts);
 }
 
 function submit(msgData, args){
