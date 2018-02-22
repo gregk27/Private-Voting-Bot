@@ -26,3 +26,6 @@ A discord bot that allows users to vote privately
   - [~~Shorter poll ids~~](https://github.com/Aree-Vanier/Private-Voting-Bot/commit/cf34b89fd1472ce36bea354fea9ef5316f1fd3f0)
   - Sort results by votes
   - Allow users to change their vote
+
+# settings.json
+  In order to protect my disord token, I have it hidden in a gitignored settings.json file. In order to run the bot, create a file called `settings.json` that contains`{"token":"YOUR_TOKEN"}` in the root folder.
