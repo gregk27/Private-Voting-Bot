@@ -22,5 +22,11 @@
       "function":"submit(message, args)",
       "description":"Submit your vote",
       "args":"Option, ID"
+  },
+  {
+    "trigger":"stop",
+    "function":"stop(message, args)",
+    "description":"Manually stop a running vote",
+    "args":"ID"
   }
 ]

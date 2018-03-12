@@ -6,6 +6,8 @@ const votes = require("./votes.js");
 const crypto = require("crypto");
 
 
+client.login(settings.token);
+
 client.on('ready', () => {
   console.log("Online");
 });
@@ -79,6 +81,11 @@ function start(msgData, args){
   votes.newVote(ID, msgData, sent, opts);
 }
 
+//Stop a running poll
+function stop(msgData, args){
+  votes.stop(msgData, args)
+}
+
 //Submit vote to poll
 function submit(msgData, args){
   var user = msgData.author;
@@ -117,5 +124,3 @@ function help(msgData){
   }
   send(out, msgData);
 }
-
-client.login(settings.token);

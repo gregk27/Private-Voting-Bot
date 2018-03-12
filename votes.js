@@ -130,5 +130,16 @@ module.exports = {
     }
 
     return ID;
+  },
+  //Stop a running vote
+  stop:function(msgData, ID){
+    for(var i = 0; i < votes.length; i++){
+      console.log(votes[i].ID + "\t" + ID);
+      if(votes[i].ID == ID){
+        votes[i].end();
+        return;
+      }
+    }
+    msgData.channel.send("Vote "+ID+" not found");
   }
 }
