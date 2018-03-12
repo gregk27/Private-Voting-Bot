@@ -13,7 +13,7 @@ client.on('ready', () => {
 //The prefix the bot will look for
 var prefix = /^!vote /
 client.on('message', message => {
-  if(message.content.match(prefix) && message.author != client.user){\
+  if(message.content.match(prefix) && message.author != client.user){
     //Get the content (message without prefix)
     var content = message.content.replace(prefix,"");
     console.log(content);
@@ -40,26 +40,31 @@ client.on('message', message => {
 
 var lastMessage;
 
-
-function test(msgData, args){
+//Start a new poll
+function start(msgData, args){
   console.log(args);
 
+  //Get the options from the arguments
   opts = args.split("[")[1];
   opts = opts.slice(0,-1);
   opts = opts.split(",");
 
+  //Create options list
   options = "";
   for(var i = 0; i < opts.length; i++){
     options += i+":\t"+opts[i]+"\n";
   }
 
-
-
+  //Generate an ID
+  var ID = votes.newID();
+  //Get the mentioned group
   mention = args.split(" ")[0];
   mention.replace("@","");
-  var ID = votes.newID();
-  var sent = [];
+  //Get targets from group
   targets = msgData.guild.roles.find("name", mention).members.array();
+
+  //Send private messages to targets
+  var sent = [];
   for(var i = 0; i < targets.length; i ++){
     user = targets[i].user;
     if(!user.bot){
@@ -69,107 +74,40 @@ function test(msgData, args){
       console.log(ID+"\t"+user.id.split("#")[1])
     }
   }
-  // var message = msgData.author.send("You Called?");
-  // lastMessage = message;
   console.log(sent.length + "\t" + sent);
+  //Save poll data
   votes.newVote(ID, msgData, sent, opts);
 }
 
+//Submit vote to poll
 function submit(msgData, args){
   var user = msgData.author;
 
+  //Get the id of the poll
   var ID = args.split(" ")[1];
 
+  //Get selected option
   var option = args.split(" ")[0]
 
-  // console.log(lastMessage.Message.reactions);
-  votes.submit(ID,user.id, option);// msgData.user.id.split("#")[1]);
+  //Submit vote
+  votes.submit(ID,user.id, option);
   console.log(args+"\t"+user.id);
-  // messages = msgData.channel.messages.findAll("message");
-  // for(var i = 0; i < messages.length; i++){
-  //   console.log(messages[i].message.content)
-  // }
 }
 
+//Call function from command
 function call(command, message, args){
   eval(command.function);
 }
 
-function start(msgData, args){
-  var salt = args.split(" ")[0];
-
-  var hash = crypto.createHmac('sha512', salt); /** Hashing algorithm sha512 */
-  hash.update(msgData.author.tag.split("#")[1]);
-  var ID = hash.digest('hex');
-
-  var options = [];
-  var split = args.split("\"");
-  for(var i = 1; i < split.length; i++){
-    if(split[i+1] == ","||split[i-1] == ","){
-      options.push(split[i]);
-    }
-    else if(split[i] == ","){
-      continue;
-    }
-    else{
-      break;
-    }
-  }
-
-  var mode = "FPTP";
-  var target = 0;
-  var privacy = false;
-  if(args.includes("STV")){
-    mode = "STV"
-    var target= args[args.indexOf("--STV")+4]+args[args.indexOf("STV")+5];
-    target = target.replace(" ", "");
-  }
-  if(args.includes("-p")||args.includes("--private")){
-    privacy = true;
-  }
-
-  console.log("NEW POLL");
-  console.log("\t" + ID);
-  console.log("\t" + options);
-  console.log("\t" + mode);
-  console.log("\t" + target);
-  console.log("\t" + privacy);
-
-  var letters = "abcdefghijklmnopqrstuvwxyz".split("");
-
-  var out = "**"+msgData.author.tag.split("#")[0]+" started a "+mode+" vote. Your options are:**\n```";
-  for(var i = 0; i < options.length; i++){
-    out+=letters[i]+") "+options[i]+"\n";
-  }
-  out+="```";
-  if(privacy){
-    out += "The vote will be private";
-  }
-
-  var msg = send(out, msgData);
-
-  print("We have returned")
-  print(msg)
-  // console.log(msg.content);
-  // msg.react(":fried_shrimp:");
-
-  // votes.newVote(ID, msg, options, mode, traget);
-
-}
-
+//Send a message to active channel
 function send(message, msgData){
   var sentMessage = null;
   var data = msgData.channel.send(message).then(msg => sentMessage = msg);
-  console.log("Message received");
+  console.log("Message Sent");
   return sentMessage;
-  // console.log(data);
-  // console.log(client);
-  // console.log(client.user);
-  // console.log(client.user.lastMessage);
-  // console.log(msgData.channel.lastMessage.reactions);
-  // return (sentMessage);
 }
 
+//Send command help
 function help(msgData){
   var out = "";
   for(var i = 0; i < commands.length; i++){
