@@ -10,18 +10,24 @@ client.on('ready', () => {
   console.log("Online");
 });
 
+//The prefix the bot will look for
 var prefix = /^!vote /
 client.on('message', message => {
-  if(message.content.match(prefix) && message.author != client.user){
+  if(message.content.match(prefix) && message.author != client.user){\
+    //Get the content (message without prefix)
     var content = message.content.replace(prefix,"");
     console.log(content);
+    //Check to see if command exists
     var valid = false;
     for(var i = 0; i < commands.length; i++){
       var command = commands[i];
+      //Get the first part of the message content
       if(content.split(" ")[0] == command.trigger){
         valid = true;
+        //Get arguments from command
         args = content.substring(content.split(" ")[0].length+1);
         console.log(args);
+        //Call the command's function
         call(command, message, args);
       }
     }
