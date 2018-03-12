@@ -31,6 +31,7 @@ client.on('message', message => {
         call(command, message, args);
       }
     }
+    //Send command does not exists message
     if(!valid){
       send("Invalid command!\nSay "+String(prefix).replace("/^", "").replace("/", "")+" help for help.", message);
     }
