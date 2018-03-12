@@ -18,7 +18,7 @@ A discord bot that allows users to vote privately
 
 # Future
   - [~~Each user can have multiple polls running~~](https://github.com/Aree-Vanier/Private-Voting-Bot/commit/cf34b89fd1472ce36bea354fea9ef5316f1fd3f0)
-  - Users can stop polls manually
+  - [~~Users can stop polls manually~~](https://github.com/Aree-Vanier/Private-Voting-Bot/commit/94deca9017a9a0d331cb9e44e4d8e9945aa7081a)
   - Ability to mention multiple users without needing a group
   - Polls that close after an amount of time
   - Better syntax error messages
