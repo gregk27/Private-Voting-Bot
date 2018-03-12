@@ -10,7 +10,7 @@ A discord bot that allows users to vote privately
 
 # Instructions
   ### Starting a Poll
-  Enter command `!vote private @group [opt1,opt2,opt3,...]`
+  Enter command `!vote start @group [opt1,opt2,opt3,...]`
   This will send a private message to all members of the mentioned group
 
   ### Voting in a poll
