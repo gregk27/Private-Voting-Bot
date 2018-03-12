@@ -14,13 +14,7 @@
   {
     "trigger":"start",
     "function":"start(message, args)",
-    "description":"Starts a new vote",
-    "args":"ID <opt1>,<opt2>,<opt3>,... [group]"
-  },
-  {
-    "trigger":"private",
-    "function":"test(message, args)",
-    "description":"Test private communications",
+    "description":"Start a private vote",
     "args":"Target [<opt1>,<opt1>,<opt3>,...]"
   },
   {
