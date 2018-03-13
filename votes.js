@@ -40,21 +40,26 @@ Vote.prototype = {
     //End the vote, tally and display results
     end:function(){
 
+      //The amount of votes each option got
       var scores = [];
 
       console.log(this.options);
 
+      //Iterate over the options
       for(var i = 0; i < this.options.length; i++){
         var temp = 0;
         console.log(this.options[i]);
+        //Iterate over the submitted votes
         for(var v = 0; v < this.votes.length; v++){
           console.log(this.votes[v]);
+          //If the option selected matches the current option's index, log it
           if(this.votes[v]==i){
             console.log("Counted");
             temp ++;
           }
         }
         console.log(temp);
+        //Push the count to scores
         scores.push(temp);
       }
 
@@ -62,27 +67,33 @@ Vote.prototype = {
 
       var order = [];
 
+      //Order the results
       for(var i = 0; i < this.options.length; i++){
+        //If there is nohing in the list, add something
         if(order.length == 0){
           order.push(i)
           continue;
         }
 
+        //The amount of votes the current option got
         count = parseInt(scores[i]);
 
         var inserted = false;
         for(var a = 0; a < order.length; a++){
+          //If the count is bigger than a point in the list, insert it and break
           if(count > parseInt(scores[order[a]])){
             order.splice(a,0,i);
             inserted = true;
             break;
           }
+            //If the count is equal to a point in the list, insert it and break
           else if(count == parseInt(scores[order[a]])){
             order.splice(a,0,i);
             inserted = true;
             break;
           }
         }
+        //If it wasnt inserted, the pop it on the end
         if(!inserted){
             order.splice(this.scores.length,0,i);
         }
@@ -93,7 +104,7 @@ Vote.prototype = {
       //Create output string
       var results = "\n";
       for(var i = 0; i < order.length; i++){
-        results+=this.options[order[i]]+"("+order[i]+"): "+scores[order[i]]+"\n";
+        results+=this.options[order[i]]+": "+scores[order[i]]+"\n";
       }
 
       //Send vote completion message
