@@ -60,10 +60,40 @@ Vote.prototype = {
 
       console.log(scores);
 
+      var order = [];
+
+      for(var i = 0; i < this.options.length; i++){
+        if(order.length == 0){
+          order.push(i)
+          continue;
+        }
+
+        count = parseInt(scores[i]);
+
+        var inserted = false;
+        for(var a = 0; a < order.length; a++){
+          if(count > parseInt(scores[order[a]])){
+            order.splice(a,0,i);
+            inserted = true;
+            break;
+          }
+          else if(count == parseInt(scores[order[a]])){
+            order.splice(a,0,i);
+            inserted = true;
+            break;
+          }
+        }
+        if(!inserted){
+            order.splice(this.scores.length,0,i);
+        }
+      }
+
+      console.log(order);
+
       //Create output string
       var results = "\n";
-      for(var i = 0; i < this.options.length; i++){
-        results+=this.options[i]+"("+i+"): "+scores[i]+"\n";
+      for(var i = 0; i < order.length; i++){
+        results+=this.options[order[i]]+"("+order[i]+"): "+scores[order[i]]+"\n";
       }
 
       //Send vote completion message
