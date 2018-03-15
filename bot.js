@@ -71,7 +71,7 @@ function start(msgData, args){
   for(var i = 0; i < targets.length; i ++){
     user = targets[i].user;
     if(!user.bot){
-      user.send("You have been chosen to vote in poll "+ID+".\n"+options+"\nTo reply enter `!vote vote <opt> "+ID+"`");
+      user.send("You have been chosen to vote in poll "+ID+".\n"+options+"\nTo reply enter `!vote vote <opt#> "+ID+"`");
       sent.push(user.id);
       console.log(user.id);
       console.log(ID+"\t"+user.id.split("#")[1])
