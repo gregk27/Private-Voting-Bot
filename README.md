@@ -17,16 +17,16 @@ A discord bot that allows users to vote privately
   To vote in a poll, enter the command hinted in the poll message, replacing <opt> with the option number you want
 
 # Future
+  - Allow users to change their vote
+  - Ranked voting systems
+  - Better syntax error messages
   - [~~Each user can have multiple polls running~~](https://github.com/Aree-Vanier/Private-Voting-Bot/commit/cf34b89fd1472ce36bea354fea9ef5316f1fd3f0)
   - [~~Users can stop polls manually~~](https://github.com/Aree-Vanier/Private-Voting-Bot/commit/94deca9017a9a0d331cb9e44e4d8e9945aa7081a)
-  - ~~Ability to mention multiple users without needing a group~~ (Cancelled)
-  - ~~Polls that close after an amount of time~~ (Cancelled)
-  - Better syntax error messages
   - [~~Poll results are tallied~~](https://github.com/Aree-Vanier/Private-Voting-Bot/commit/aaf8e2fb1c28a18e70ddf792375e4129e149cb72)
   - [~~Shorter poll ids~~](https://github.com/Aree-Vanier/Private-Voting-Bot/commit/cf34b89fd1472ce36bea354fea9ef5316f1fd3f0)
   - [~~Sort results by votes~~](https://github.com/Aree-Vanier/Private-Voting-Bot/commit/5070b0b3a0f249cab4cb8cca083c0258f6f0dfcf)
-  - Allow users to change their vote
-  - Ranked voting systems
+  - ~~Ability to mention multiple users without needing a group~~ (Cancelled)
+  - ~~Polls that close after an amount of time~~ (Cancelled)
 
 # settings.json
   In order to protect my disord token, I have it hidden in a gitignored settings.json file. In order to run the bot, create a file called `settings.json` that contains`{"token":"YOUR_TOKEN"}` in the root folder.
