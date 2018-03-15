@@ -59,6 +59,7 @@ function start(msgData, args){
 
   //Generate an ID
   var ID = votes.newID();
+  msgData.channel.send("Poll started with ID: "+ID)
   //Get the mentioned group
   mention = args.split(" ")[0];
   mention.replace("@","");
