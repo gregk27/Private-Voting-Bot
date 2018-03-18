@@ -7,6 +7,9 @@ A discord bot that allows users to vote privately
     - Votes are completely secret
     - ~~Raw results are displayed when all users have voted~~
     - Tallied results are displayed when all users have voted
+    -Multiple voting systems
+      -Single vote
+      -Multiple vote
 
 # Instructions
   ### Starting a Poll
