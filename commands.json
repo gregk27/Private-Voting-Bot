@@ -15,11 +15,11 @@
     "trigger":"start",
     "function":"start(message, args)",
     "description":"Start a private vote",
-    "args":"Target [<opt1>,<opt1>,<opt3>,...]"
+    "args":"Target [<opt1>,<opt1>,<opt3>,...], Mode"
   },
   {
       "trigger":"vote",
-      "function":"submit(message, args)",
+      "function":"submit(message, args)\nModes:\n\t**S**:Single vote, FPTP method\n\t**M**:Multiple votes, FTPT method",
       "description":"Submit your vote",
       "args":"Option, ID"
   },

@@ -5,6 +5,7 @@ const commands = require('./commands.json');
 const votes = require("./votes.js");
 const crypto = require("crypto");
 
+console.log("test");
 
 client.login(settings.token);
 
@@ -48,8 +49,14 @@ function start(msgData, args){
 
   //Get the options from the arguments
   opts = args.split("[")[1];
-  opts = opts.slice(0,-1);
+  opts = opts.split("]")[0];
   opts = opts.split(",");
+  console.log(opts)
+
+  //Get the Mode
+  mode = args.split("]")[1];
+  mode = mode.replace(" ","");
+  console.log(mode);
 
   //Create options list
   options = "";
@@ -79,7 +86,7 @@ function start(msgData, args){
   }
   console.log(sent.length + "\t" + sent);
   //Save poll data
-  votes.newVote(ID, msgData, sent, opts);
+  votes.newVote(ID, msgData, sent, opts, mode);
 }
 
 //Stop a running poll

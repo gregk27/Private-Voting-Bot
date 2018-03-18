@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 //Vote constructor
-function Vote (ID, message, children, options) {
+function Vote (ID, message, children, options, mode) {
   this.ID = ID;
   this.message = message;
   //Message ids of sent votes
@@ -9,6 +9,7 @@ function Vote (ID, message, children, options) {
   //Collected votes
   this.votes = [];
   this.options = options;
+  this.mode = mode;
 }
 
 Vote.prototype = {
@@ -25,7 +26,13 @@ Vote.prototype = {
             this.children.splice(i,1);
             console.log(this.children);
             //Record Vote
-            this.votes.push(option);
+            if(mode=="S") this.votes.push(option);
+            if(mode=="F"){
+              var options = option.replace("[").replace("]").split(",");
+              for(var v = 0; v < options.length; v ++){
+                this.votes.push(option[v]);
+              }
+            }
             break;
         }
       }
@@ -130,8 +137,8 @@ function terminate(ID){
 
 module.exports = {
   //Create a new vote
-  newVote:function(ID, message, children, options){
-    votes.push(new Vote(ID, message, children, options));
+  newVote:function(ID, message, children, options, mode){
+    votes.push(new Vote(ID, message, children, options, mode));
   },
 
   //Submit a vote
