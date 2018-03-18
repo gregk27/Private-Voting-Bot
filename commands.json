@@ -14,12 +14,12 @@
   {
     "trigger":"start",
     "function":"start(message, args)",
-    "description":"Start a private vote",
+    "description":"Start a private vote\nModes:\n\t**S**: Single vote, FPTP method\n\t**M**: Multiple votes, FTPT method",
     "args":"Target [<opt1>,<opt1>,<opt3>,...], Mode"
   },
   {
       "trigger":"vote",
-      "function":"submit(message, args)\nModes:\n\t**S**:Single vote, FPTP method\n\t**M**:Multiple votes, FTPT method",
+      "function":"submit(message, args)",
       "description":"Submit your vote",
       "args":"Option, ID"
   },

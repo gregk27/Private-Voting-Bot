@@ -26,11 +26,13 @@ Vote.prototype = {
             this.children.splice(i,1);
             console.log(this.children);
             //Record Vote
-            if(mode=="S") this.votes.push(option);
-            if(mode=="F"){
-              var options = option.replace("[").replace("]").split(",");
+            if(this.mode=="S") this.votes.push(option);
+            if(this.mode=="M"){
+              console.log("Multivote")
+              var options = option.replace("[","").replace("]","").split(",");
+              console.log(options)
               for(var v = 0; v < options.length; v ++){
-                this.votes.push(option[v]);
+                this.votes.push(options[v]);
               }
             }
             break;
@@ -102,7 +104,7 @@ Vote.prototype = {
         }
         //If it wasnt inserted, the pop it on the end
         if(!inserted){
-            order.splice(this.scores.length,0,i);
+            order.splice(scores.length,0,i);
         }
       }
 
