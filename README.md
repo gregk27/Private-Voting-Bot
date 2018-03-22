@@ -18,6 +18,9 @@ A discord bot that allows users to vote privately
 
   ### Voting in a poll
   To vote in a poll, enter the command hinted in the poll message, replacing <opt> with the option number you want
+  
+# Setup
+  To add the bot to your server, follow the instructions [here](https://discordapp.com/oauth2/authorize?client_id=404741828315709440&scope=bot&permissions=482368).
 
 # Future
   - Allow users to change their vote
